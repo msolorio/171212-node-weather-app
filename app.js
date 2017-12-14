@@ -5,7 +5,15 @@ request({
   json: true,
   method: 'GET'
 }, (error, response, body) => {
+  if (error) {
+    return console.log('error:', error);
+  }
+
   // JSON.stringify will pretty print our JSON
-  // the 3rd argument specifies the indendation
+  // 3rd argument specifies indendation
   console.log(JSON.stringify(body, undefined, 2));
+  
+  console.log(body.results[0].formatted_address);
+  console.log(body.results[0].geometry.location.lat);
+  console.log(body.results[0].geometry.location.lng);
 });
