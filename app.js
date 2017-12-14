@@ -1,7 +1,7 @@
 const request = require('request');
 const { address } = require('./args');
 
-function getCoordinates(addr) {
+function getAddressData(addr) {
   return new Promise((resolve, reject) => {
     request({
       url: `https://maps.googleapis.com/maps/api/geocode/json?address=${addr}`,
@@ -9,22 +9,26 @@ function getCoordinates(addr) {
       method: 'GET'
     }, (error, response, body) => {
 
-      if (error) reject(error);
+      if (error) return reject(error);
 
-      const result = (
-`address: ${body.results[0].formatted_address}
-latitude: ${body.results[0].geometry.location.lat}
-longitute: ${body.results[0].geometry.location.lng}`
-      );
+      if (body.results < 1) return reject('no results found');
 
-      resolve(result);
+      resolve(body);
     });
   });
 }
 
-getCoordinates(address)
-  .then((response) => {
-    console.log(response);
+function formatResult(addressData) {
+  return (
+    `address: ${addressData.results[0].formatted_address}
+latitude: ${addressData.results[0].geometry.location.lat}
+longitute: ${addressData.results[0].geometry.location.lng}`
+  );
+}
+
+getAddressData(address)
+  .then((addressData) => {
+    console.log(formatResult(addressData));
   })
   .catch((error) => {
     console.error('error:', error);
