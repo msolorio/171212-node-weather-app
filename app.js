@@ -5,5 +5,7 @@ request({
   json: true,
   method: 'GET'
 }, (error, response, body) => {
-  console.log('response body:', body);
+  // JSON.stringify will pretty print our JSON
+  // the 3rd argument specifies the indendation
+  console.log(JSON.stringify(body, undefined, 2));
 });
