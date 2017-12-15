@@ -10,6 +10,6 @@
   "license": "ISC",
   "dependencies": {
     "request": "^2.73.0",
-    "yargs": "^10.0.3"
+    "yargs": "^4.8.1"
   }
 }

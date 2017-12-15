@@ -2,15 +2,18 @@ const yargs = require('yargs');
 
 // using yargs to easily access addressed passed
 const argv = yargs
-  .command('', 'return coordinates for address', {
+  .options({
     address: {
-      describe: 'the address you wish to receive coordinates for',
-      demand: true
+      alias: 'a',
+      demand: true,
+      string: true,
+      description: 'Address to fetch weather'
     }
   })
   .help()
+  .alias('help', 'h')
   .argv;
 
 module.exports = {
-  address: encodeURIComponent(argv.address)
+  address: argv.address
 };
