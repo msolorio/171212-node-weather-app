@@ -11,8 +11,6 @@ const argv = yargs
   .help()
   .argv;
 
-const formatAddress = (address) => address.split(' ').join('%20');
-
 module.exports = {
-  address: formatAddress(argv.address)
+  address: encodeURIComponent(argv.address)
 };
