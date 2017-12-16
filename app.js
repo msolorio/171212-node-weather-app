@@ -1,10 +1,13 @@
-const getAddressData = require('./geocode/getAddressData');
-const formatAddressData = require('./geocode/formatAddressData');
+const getAddressCoordinates = require('./geocode/getAddressCoordinates');
+const getTemperature = require('./geocode/getTemperature');
 const { address } = require('./args');
 
-getAddressData(address)
-  .then((addressData) => {
-    console.log(formatAddressData(addressData));
+getAddressCoordinates(address)
+  .then((addressCoordinates) => {
+    return getTemperature(addressCoordinates);
+  })
+  .then((temperature) => {
+    console.log(`${temperature} F`);
   })
   .catch((error) => {
     console.error(error);

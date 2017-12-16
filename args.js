@@ -1,7 +1,7 @@
 const yargs = require('yargs');
 
-// uses yargs to set up option flags to pass in command line and help tools
-// to display with `node app.js --help`
+// uses yargs to set up option flags to pass in command line
+// and help tools to display with `node app.js --help`
 const argv = yargs
   .options({
     address: {
