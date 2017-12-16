@@ -1,5 +1,11 @@
 const request = require('request');
 
+/**
+ * getAddressData - given a string address returns a data object for address
+ *
+ * @param  {string} addr - the requested address in string form
+ * @return {object} - the data object for that address
+ */
 module.exports = function getAddressData(addr) {
   const encodedAddress = encodeURIComponent(addr);
 

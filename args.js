@@ -1,6 +1,7 @@
 const yargs = require('yargs');
 
-// using yargs to easily access addressed passed
+// uses yargs to set up option flags to pass in command line and help tools
+// to display with `node app.js --help`
 const argv = yargs
   .options({
     address: {
