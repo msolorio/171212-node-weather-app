@@ -7,7 +7,9 @@
  * latitude, and longitude
  */
 module.exports = function formatAddressData(addressData) {
+
   return {
+    address: addressData.results[0].formatted_address,
     lat: addressData.results[0].geometry.location.lat,
     lng: addressData.results[0].geometry.location.lng
   }
