@@ -11,8 +11,9 @@ module.exports = function getAddressCoordinates(addr) {
   const encodedAddress = encodeURIComponent(addr);
 
   return new Promise((resolve, reject) => {
-
     const googleMapsRequestUrl = `https://maps.googleapis.com/maps/api/geocode/json?address=${encodedAddress}`;
+    
+    if (!addr) reject('Please provide an address.');
 
     axios.get(googleMapsRequestUrl)
       .then((response) => {
