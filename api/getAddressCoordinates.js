@@ -27,8 +27,14 @@ module.exports = function getAddressCoordinates(addr) {
             return reject(`somethings went weird retreiving address from google maps api.\nResponse status code: ${response.status}`);
         }
       })
-      .catch(() => {
-        reject('Unable to connect to google api server.');
+      .catch((error) => {
+        switch(true) {
+          case (error.code === 'ENOTFOUND'):
+            return reject('Unable to connect to google api server.');
+
+          default:
+            return reject(`There was an error connecting to the google api server.\nError code: ${error.code}`);
+        }
       });
   });
 }
