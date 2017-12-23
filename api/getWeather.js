@@ -9,7 +9,7 @@ const DARKSKY_API_KEY = require('../config').DARKSKY_API_KEY;
  * @return {string} - either the error message or the temperature for the
  * requested location
  */
-module.exports = function getTemperature(addressData) {
+module.exports = function getWeather(addressData) {
   const { lat, lng, address } = addressData;
 
   return new Promise((resolve, reject) => {
@@ -24,10 +24,14 @@ module.exports = function getTemperature(addressData) {
             return reject('No weather data found for location');
 
           case (response.status === 200):
+
             return resolve({
               address,
               actualTemp: response.data.currently.temperature,
-              apparentTemp: response.data.currently.apparentTemperature
+              apparentTemp: response.data.currently.apparentTemperature,
+              precipitationProbability: response.data.currently.precipProbability,
+              windSpeed: response.data.currently.windSpeed,
+              cloudCover: response.data.currently.cloudCover
             });
 
           default:
